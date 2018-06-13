@@ -7,20 +7,35 @@ export default class WholeCalc extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayNumber: 0
+      displayNumber: 0,
+      equation: 0
     }
   }
 
   setDisplayNumber( value) {
-      console.log('hello',  value)
     if (this.state.displayNumber === 0) {
-      this.setState({displayNumber: value})
-    } else {
+         this.setState({displayNumber: +value})
+
+        } else {
         this.setState({displayNumber: "" + this.state.displayNumber + value})
+
     }
   }
-  render() {
 
+  handleMathOperators( value) {
+this.setState({
+        equation: this.state.displayNumber.toString() + value,
+        displayNumber: "" +this.state.displayNumber +value
+    })
+    }
+
+    solveFor() {
+this.setState({
+    displayNumber: eval(this.state.displayNumber)
+})
+    }
+
+  render() {
     return (
 
       <main role="main">
@@ -36,11 +51,11 @@ export default class WholeCalc extends React.Component {
               </div>
 
               <div className="formOperators">
-                <FormOperators/>
+                <FormOperators onClick={(event) => this.solveFor(event)}/>
               </div>
             </div>
             <div className="mathOperators">
-              <MathOperators/>
+              <MathOperators onClick={(value)=> this.handleMathOperators(value)}/>
             </div>
           </div>
 
