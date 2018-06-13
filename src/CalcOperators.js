@@ -1,6 +1,6 @@
 import React from 'react';
 export default function CalcOperators(props) {
-return (<span className="formButtonContainer">
+return (<span className="calcButtonContainer">
 <button name="clear" className="clear" id="clear" className="numberbutton" type="button" onClick={(e) => props.clearCalc(e)}> C </button>
 
 
