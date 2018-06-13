@@ -14,7 +14,7 @@ export default class WholeCalc extends React.Component {
 
   setDisplayNumber( value) {
     if (this.state.displayNumber === 0) {
-         this.setState({displayNumber: +value})
+         this.setState({displayNumber: ""+ value})
 
         } else {
         this.setState({displayNumber: "" + this.state.displayNumber + value})
@@ -23,15 +23,23 @@ export default class WholeCalc extends React.Component {
   }
 
   handleMathOperators( value) {
-this.setState({
+console.log(typeof this.state.displayNumber)
+    debugger
+    if(isNaN(this.state.displayNumber.substr(this.state.displayNumber.length -1))){
+    console.log('not a number')
+    this.setState({
+        displayNumber: "Error"
+    })
+} else
+{      this.setState({
         equation: this.state.displayNumber.toString() + value,
         displayNumber: "" +this.state.displayNumber +value
-    })
+    })}
     }
 
     solveFor() {
 this.setState({
-    displayNumber: eval(this.state.displayNumber)
+    displayNumber: eval(this.state.displayNumber).toString()
 })
     }
 
