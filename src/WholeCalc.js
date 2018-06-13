@@ -1,26 +1,19 @@
 import React from 'react';
 import NumberButtons from './NumberButtons'
-import FormOperators from './FormOperators'
-
+import CalcOperators from './CalcOperators'
 import MathOperators from './MathOperators'
 
 export default class WholeCalc extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayNumber: 0,
-      equation: 0
+      displayNumber: 0
     }
   }
-//TODO Will allow user to enter "1+ 00" - should fix
   setDisplayNumber(value) {
-      console.log(this.state.displayNumber)
-     if (typeof value !== 'number') {
-         this.setState({
-             displayNumber: "error"
-         })
-     }
-    else if (this.state.displayNumber === 0 || this.state.displayNumber === '0') {
+    if (typeof value !== 'number') {
+      this.setState({displayNumber: "error"})
+    } else if (this.state.displayNumber === 0 || this.state.displayNumber === '0') {
       this.setState({
         displayNumber: "" + value
       })
@@ -34,7 +27,6 @@ export default class WholeCalc extends React.Component {
 
   handleMathOperators(value) {
     if (isNaN(this.state.displayNumber.substr(this.state.displayNumber.length - 1))) {
-      console.log('not a number')
       this.setState({displayNumber: "Error"})
     } else {
       this.setState({
@@ -49,38 +41,37 @@ export default class WholeCalc extends React.Component {
     })
   }
 
-  clearCalc () {
-      this.setState({
-          displayNumber: 0
-      })
+  clearCalc() {
+    this.setState({displayNumber: 0})
   }
 
   render() {
     return (
 
       <main role="main">
-        <h1>Content here please</h1>
-        {/* <div className="container">
-          <div className="numberDisplay">
-            {this.state.displayNumber}
-          </div>
-          <div className="buttons">
-            <div className="leftButtons">
-              <div className="numberButtons">
-                <NumberButtons onClick={(value) => this.setDisplayNumber(value)}/>
-              </div>
+      <h1>Expel.io Calculator Exercise</h1>
 
-              <div className="formOperators">
-                <FormOperators clearCalc={(e) => this.clearCalc(e)} zeroButton={(value) =>this.setDisplayNumber(value)} onClick={(event) => this.solveFor(event)}/>
-              </div>
+      <div className="mainContainer">
+        <div className="numberDisplay">
+          {this.state.displayNumber}
+        </div>
+        <div className="buttons">
+          <div className="leftButtons">
+            <div className="numberButtons">
+              <NumberButtons onClick={(value) => this.setDisplayNumber(value)}/>
             </div>
-            <div className="mathOperators">
-              <MathOperators onClick={(value) => this.handleMathOperators(value)}/>
+            <div className="calcOperators">
+              <CalcOperators
+                clearCalc={(e) => this.clearCalc(e)}
+                zeroButton={(value) => this.setDisplayNumber(value)}
+                solveFor={(event) => this.solveFor(event)}/>
             </div>
           </div>
-
-        </div> */}
-
+          <div className="mathOperators">
+            <MathOperators onClick={(value) => this.handleMathOperators(value)}/>
+          </div>
+        </div>
+        </div>
       </main>
     );
   }

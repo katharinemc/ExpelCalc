@@ -21,7 +21,7 @@ button {
  flex-direction: row;
 }
 
-.container {
+.mainContainer {
   margin: 0 auto;
   display:inline-block;  margin: 0 auto;
     height: 66%;
@@ -34,7 +34,7 @@ button {
   width: 100%;
 }
 
-.formOperators {
+.calcOperators {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
